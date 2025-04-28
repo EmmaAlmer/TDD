@@ -1,4 +1,4 @@
-package se.emma.lektioner;
+package se.emma.lektioner.l2;
 
 public class Items {
 

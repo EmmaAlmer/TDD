@@ -1,4 +1,4 @@
-package se.emma.lektioner;
+package se.emma.lektioner.l2;
 import java.util.ArrayList;
 
 public class ItemsCart {

@@ -1,10 +1,19 @@
 package se.emma.lektioner.bank;
 
 public class User {
-    Currency currency = new Currency();
-    Bank bank = new Bank();
+    ECurrencies currency;
+    Bank bank;
 
     String name;
     String id;
-    double balance;
+
+
+    public User(ECurrencies currency, Bank bank, String name, String id, double balance) {
+        this.currency = currency;
+        this.bank = bank;
+        this.name = name;
+        this.id = id;
+    }
+
+
 }

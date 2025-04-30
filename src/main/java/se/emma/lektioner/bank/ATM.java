@@ -1,14 +1,29 @@
 package se.emma.lektioner.bank;
 
 public class ATM {
-    User user;
     Bank bank;
 
-    public double withdraw(double amount) {
-        return 0;
+    public ATM(Bank bank)
+    {
+        this.bank = bank;
     }
 
-    public double deposit(double amount) {
-        return 0;
+    public boolean withdraw(User user, ECurrencies currencyType, double amount) {
+        Account a = bank.getUsersAccount(user);
+        if(a != null && a.getCurrency().withdraw(currencyType, amount)) {
+            user.getCurrency().deposit(currencyType, amount);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean deposit(User user, ECurrencies currencyType, double amount) {
+        Account a = bank.getUsersAccount(user);
+        if(a != null && user.getCurrency().withdraw(currencyType, amount)){
+            a.getCurrency().deposit(currencyType, amount);
+            return true;
+        }
+        return false;
     }
 }

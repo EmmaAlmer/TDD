@@ -7,20 +7,51 @@ public class Currency {
     final double DOLLARVALUE = 9.64;
     final double EUROVALUE = 10.95;
 
-    public double convert(ECurrencies from, ECurrencies to, double amount){
+    public Currency(ECurrencies currency, double balance) {
+        this.currency = currency;
+        this.balance = balance;
+    }
+    public Currency(){
+        currency = ECurrencies.SEK;
+        balance = 0;
+    }
 
-        if (from == ECurrencies.DOLLAR){
-            amount *= DOLLARVALUE;
+    public void deposit(ECurrencies c, double amount){
+        convert(c);
+        balance += amount;
+    }
+    public boolean withdraw(ECurrencies c, double amount){
+        convert(c);
+        balance -= amount;
+        if(balance > 0)
+        {
+            return true;
         }
-        else if (from == ECurrencies.EURO){
-            amount *= EUROVALUE;
+        balance += amount;
+        return false;
+    }
+
+    public void convert(ECurrencies to){
+
+        if (currency == ECurrencies.DOLLAR){
+            balance *= DOLLARVALUE;
         }
-        if (to == ECurrencies.SEK){
-            return amount;
+        else if (currency == ECurrencies.EURO){
+            balance *= EUROVALUE;
         }
-        else if (to == ECurrencies.DOLLAR){
-            return amount / DOLLARVALUE;
+        if (to == ECurrencies.DOLLAR){
+            this.balance =  balance / DOLLARVALUE;
         }
-        return amount / EUROVALUE;
+        else if (to == ECurrencies.EURO){
+            this.balance =  balance / EUROVALUE;
+        }
+        this.currency = to;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+    public ECurrencies getCurrencyType() {
+        return currency;
     }
 }

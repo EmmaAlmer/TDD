@@ -4,6 +4,20 @@ import java.util.ArrayList;
 
 public class Bank {
     ArrayList<Account> accounts = new ArrayList<>();
-    Currency currency = new Currency();
-    double balance;
+
+
+    public void addAccount(Account account){
+        accounts.add(account);
+    }
+
+    public Account getUsersAccount(User user){
+        for(Account account : accounts){
+            if(account.getUser().getID().equals(user.getID()))
+            {
+                return account;
+            }
+        }
+        return null;
+    }
+
 }
